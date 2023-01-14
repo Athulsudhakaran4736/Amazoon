@@ -10,7 +10,7 @@ const data = {
       brand: 'Netplay',
       rating: 10,
       numReviews: 10,
-      decription: 'Best quality shirt',
+      description: 'Best quality shirt',
     },
     {
       name: 'NorthRepublic Slim Shirt',
@@ -22,7 +22,7 @@ const data = {
       brand: 'NorthRepublic',
       rating: 9,
       numReviews: 10,
-      decription: 'Best quality shirt',
+      description: 'Best quality shirt',
     },
     {
       name: `Levi's pant`,
@@ -34,7 +34,7 @@ const data = {
       brand: `Levi's`,
       rating: 10,
       numReviews: 10,
-      decription: 'Best quality pant',
+      description: 'Best quality pant',
     },
     {
       name: 'IndianGarage pant',
@@ -46,7 +46,7 @@ const data = {
       brand: 'IndianGarage',
       rating: 10,
       numReviews: 10,
-      decription: 'Best quality pant',
+      description: 'Best quality pant',
     },
   ],
 };

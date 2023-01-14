@@ -1,18 +1,19 @@
 import './App.css';
 // import data from './data';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './Screen/HomeScreen';
 import ProductScreen from './Screen/ProductScreen';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
+
 function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
         <header>
           <Navbar bg="dark" variant="dark">
-            <Container>
+            <Container className="mt-3">
               <LinkContainer to="/">
                 <Navbar.Brand>Amazon</Navbar.Brand>
               </LinkContainer>

@@ -18,7 +18,7 @@ const data = {
       category: 'shirt',
       Image: '/images/p2.jpg',
       price: '$15',
-      countInstock: 9,
+      countInstock: 0,
       brand: 'NorthRepublic',
       rating: 2,
       numReviews: 10,
