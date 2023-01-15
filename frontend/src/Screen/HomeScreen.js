@@ -2,9 +2,10 @@ import { useEffect, useReducer } from 'react';
 import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import data from '../data';
 import axios from 'axios';
 import Product from '../components/Product';
+import LoadingPage from '../components/LoadingPage';
+import MessagePage from '../components/MessagePage';
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -18,7 +19,7 @@ const reducer = (state, action) => {
   }
 };
 function HomeScreen() {
-  const [{ products }, dispatch] = useReducer(logger(reducer), {
+  const [{ products, loading, error }, dispatch] = useReducer(logger(reducer), {
     products: [],
     error: '',
     loading: true,
@@ -39,13 +40,23 @@ function HomeScreen() {
     <div>
       <h1>Featured products</h1>
       <div className="products">
-        <Row>
-          {products.map((product) => (
-            <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
+        {loading ? (
+          <div>
+            <LoadingPage />
+          </div>
+        ) : error ? (
+          <div>
+            <MessagePage variant="danger">{error}</MessagePage>
+          </div>
+        ) : (
+          <Row>
+            {products.map((product) => (
+              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </div>
   );

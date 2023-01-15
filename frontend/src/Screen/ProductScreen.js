@@ -10,6 +10,8 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/esm/Badge';
 import Button from 'react-bootstrap/esm/Button';
 import { Helmet } from 'react-helmet-async';
+import LoadingPage from '../components/LoadingPage';
+import MessagePage from '../components/MessagePage';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -43,9 +45,11 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
   return loading ? (
-    <div>Loading....</div>
+    <div>
+      <LoadingPage />
+    </div>
   ) : error ? (
-    <div>{error} </div>
+    <MessagePage variant="Danger">{error}</MessagePage>
   ) : (
     <div>
       <Row>
