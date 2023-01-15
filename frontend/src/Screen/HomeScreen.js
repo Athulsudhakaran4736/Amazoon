@@ -38,8 +38,6 @@ function HomeScreen() {
   return (
     <div>
       <h1>Featured products</h1>
-      {/* {loading ? <div> Loading... </div> : <div>{error}</div>} */}
-
       <div className="products">
         <Row>
           {products.map((product) => (
