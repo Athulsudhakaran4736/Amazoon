@@ -2,8 +2,18 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Rating from './Rating';
+import { Store } from '../Store';
+import { useContext } from 'react';
 function Product(props) {
   const { product } = props;
+  const { state, dispatch: ctxdispatch } = useContext(Store);
+  const ButtonClickHandler = () => {
+    ctxdispatch({
+      type: 'CART_ADD_ITEMS',
+      payload: { ...product, quantity: 1 },
+    });
+  };
+
   return (
     <Card key={product.slug}>
       <Link to={`/products/${product.slug}`}>
@@ -15,7 +25,7 @@ function Product(props) {
         </Link>
         <Rating rating={product.rating} numRev={product.numReviews} />
         <Card.Text>{product.price}</Card.Text>
-        <Button>Add to cart</Button>
+        <Button onClick={ButtonClickHandler}>Add to cart</Button>
       </Card.Body>
     </Card>
   );

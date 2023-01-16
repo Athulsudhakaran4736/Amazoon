@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useReducer } from 'react';
+import { useContext, useReducer } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,7 @@ import Button from 'react-bootstrap/esm/Button';
 import { Helmet } from 'react-helmet-async';
 import LoadingPage from '../components/LoadingPage';
 import MessagePage from '../components/MessagePage';
+import { Store } from '../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -44,12 +45,22 @@ function ProductScreen() {
     };
     fetchData();
   }, [slug]);
+  const { state, dispatch: ctxdispatch } = useContext(Store);
+  const ButtonHandler = () => {
+    ctxdispatch({
+      type: 'CART_ADD_ITEMS',
+      payload: { ...product, quantity: 1 },
+    });
+  };
+
   return loading ? (
     <div>
       <LoadingPage />
     </div>
   ) : error ? (
-    <MessagePage variant="Danger">{error}</MessagePage>
+    <div>
+      <MessagePage variant="Danger">{error}</MessagePage>
+    </div>
   ) : (
     <div>
       <Row>
@@ -72,7 +83,7 @@ function ProductScreen() {
             </ListGroup.Item>
             <ListGroup.Item>Price{product.price}</ListGroup.Item>
             <ListGroup.Item>
-              Description: <p>{product.decription}</p>
+              Description: <p>{product.description}</p>
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -101,7 +112,9 @@ function ProductScreen() {
                 {product.countInstock > 0 && (
                   <ListGroup.Item>
                     <div className="" d-grid>
-                      <Button variant="primary">Add to cart</Button>
+                      <Button onClick={ButtonHandler} variant="primary">
+                        Add to cart
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 )}
@@ -113,4 +126,5 @@ function ProductScreen() {
     </div>
   );
 }
+
 export default ProductScreen;
