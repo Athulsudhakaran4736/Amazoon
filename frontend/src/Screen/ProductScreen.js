@@ -46,13 +46,21 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
   const { state, dispatch: ctxdispatch } = useContext(Store);
-  const ButtonHandler = () => {
+  const { cart } = state;
+  const AddToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInstock < quantity) {
+      window.alert('not found');
+      return;
+    }
+
     ctxdispatch({
       type: 'CART_ADD_ITEMS',
       payload: { ...product, quantity: 1 },
     });
   };
-
   return loading ? (
     <div>
       <LoadingPage />
@@ -111,8 +119,8 @@ function ProductScreen() {
                 </ListGroup.Item>
                 {product.countInstock > 0 && (
                   <ListGroup.Item>
-                    <div className="" d-grid>
-                      <Button onClick={ButtonHandler} variant="primary">
+                    <div className="d-grid">
+                      <Button onClick={AddToCartHandler} variant="primary">
                         Add to cart
                       </Button>
                     </div>

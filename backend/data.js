@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: 1,
       name: 'Netplay Slim Shirt',
       slug: 'netplay-slim-shirt',
       category: 'shirt',
@@ -13,6 +14,7 @@ const data = {
       description: 'Best quality shirt',
     },
     {
+      _id: 2,
       name: 'NorthRepublic Slim Shirt',
       slug: 'north-republic-slim-shirt',
       category: 'shirt',
@@ -25,6 +27,7 @@ const data = {
       description: 'Best quality shirt',
     },
     {
+      _id: 3,
       name: `Levi's pant`,
       slug: `Levi's-pant`,
       category: 'pant',
@@ -37,6 +40,7 @@ const data = {
       description: 'Best quality pant',
     },
     {
+      _id: 4,
       name: 'IndianGarage pant',
       slug: 'indian-garage-pant',
       category: 'pant',
