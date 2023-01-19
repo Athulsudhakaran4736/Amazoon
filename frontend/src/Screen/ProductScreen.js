@@ -58,7 +58,7 @@ function ProductScreen() {
 
     ctxdispatch({
       type: 'CART_ADD_ITEMS',
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity },
     });
   };
   return loading ? (
