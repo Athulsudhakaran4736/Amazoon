@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useReducer } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -27,6 +27,7 @@ const reducer = (state, action) => {
   }
 };
 function ProductScreen() {
+  let navigate = useNavigate();
   let { slug } = useParams();
   const [{ product, loading, error }, dispatch] = useReducer(reducer, {
     product: [],
@@ -52,14 +53,14 @@ function ProductScreen() {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInstock < quantity) {
-      window.alert('not found');
+      window.alert('Out of stock');
       return;
     }
-
     ctxdispatch({
       type: 'CART_ADD_ITEMS',
       payload: { ...product, quantity },
     });
+    navigate('/cart');
   };
   return loading ? (
     <div>
@@ -89,7 +90,7 @@ function ProductScreen() {
                 numRev={product.numReviews}
               ></Rating>
             </ListGroup.Item>
-            <ListGroup.Item>Price{product.price}</ListGroup.Item>
+            <ListGroup.Item>Price ${product.price}</ListGroup.Item>
             <ListGroup.Item>
               Description: <p>{product.description}</p>
             </ListGroup.Item>
@@ -102,7 +103,7 @@ function ProductScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Price</Col>
-                    <Col>{product.price}</Col>
+                    <Col>${product.price}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
