@@ -16,6 +16,7 @@ import CartScreen from './Screen/CartScreen';
 function App() {
   const { state } = useContext(Store);
   const { cart } = state;
+  console.log(state, 'state');
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">

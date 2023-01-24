@@ -5,12 +5,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import MessagePage from '../components/MessagePage';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
 export default function CartScreen() {
+  const navigate = useNavigate();
   const { state, dispatch: ctxdispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -32,6 +33,9 @@ export default function CartScreen() {
       type: 'CART_REMOVE_ITEMS',
       payload: item,
     });
+  };
+  const checkOutHandler = () => {
+    navigate('signIn?redirect=/shipping');
   };
   return (
     <div>
@@ -108,6 +112,7 @@ export default function CartScreen() {
                       type="button"
                       variant="primary"
                       disabled={cartItems.length === 0}
+                      onClick={checkOutHandler}
                     >
                       Proceed to Checkout
                     </Button>
