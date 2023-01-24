@@ -28,14 +28,16 @@ export default function CartScreen() {
       payload: { ...item, quantity },
     });
   };
+
   const removeHandler = async (item) => {
     ctxdispatch({
       type: 'CART_REMOVE_ITEMS',
       payload: item,
     });
   };
+
   const checkOutHandler = () => {
-    navigate('signIn?redirect=/shipping');
+    navigate('/signIn?redirect=/shipping');
   };
   return (
     <div>
