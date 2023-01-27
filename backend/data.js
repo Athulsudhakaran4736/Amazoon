@@ -1,4 +1,20 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+  users: [
+    {
+      name: 'Athul',
+      email: 'user@gmail.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+    },
+    {
+      name: 'Ana',
+      email: 'admin@gmail.com',
+      password: bcrypt.hashSync('123456234'),
+      isAdmin: true,
+    },
+  ],
   products: [
     {
       name: 'Netplay Slim Shirt',
