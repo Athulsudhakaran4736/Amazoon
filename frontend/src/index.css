@@ -58,3 +58,9 @@ main{
   width:50%;
   margin-bottom: 16px;
 }
+.checkout-steps > div {
+border-bottom: 0.2rem solid #a0a0a0;
+}
+.checkout-steps > div.active {
+  border-bottom: 0.2rem solid #f08000;
+}
